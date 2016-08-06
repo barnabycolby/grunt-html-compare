@@ -1,0 +1,12 @@
+{
+    "default": [
+        "jshint",
+        "test"
+    ],
+
+    "test": [
+        "clean",
+        "html_compare",
+        "nodeunit"
+    ]
+}
