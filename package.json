@@ -1,0 +1,39 @@
+{
+  "name": "grunt-html-compare",
+  "description": "Compares two HTML files, passing the result to a user defined function.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/barnabycolby/grunt-html-compare",
+  "author": {
+    "name": "Barnaby Colby",
+    "email": "barnaby.colby@gmail.com",
+    "url": "https://barnabycolby.io"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/barnabycolby/grunt-html-compare.git"
+  },
+  "bugs": {
+    "url": "https://github.com/barnabycolby/grunt-html-compare/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/barnabycolby/grunt-html-compare/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
