@@ -1,3 +1,4 @@
+/*global module */
 module.exports = {
     default_options: {
         options: {
