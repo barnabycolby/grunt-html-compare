@@ -2,7 +2,7 @@
 (function () {
     'use strict';
 
-    var grunt = require('grunt');
+    var exec = require('child_process').exec;
 
     /*
         ======== A Handy Little Nodeunit Reference ========
@@ -25,27 +25,19 @@
     */
 
     exports.html_compare = {
-        setUp: function (done) {
-            // setup here if necessary
-            done();
-        },
-        default_options: function (test) {
+        missing_result: function (test) {
             test.expect(1);
 
-            var actual = grunt.file.read('tmp/default_options'),
-                expected = grunt.file.read('test/expected/default_options');
-            test.equal(actual, expected, 'should describe what the default behavior is.');
+            // Run the missing_result target and check that it fails with a warning
+            exec('grunt html_compare:missing_result', function (error) {
+                var errorMessage = "The task should fail with a warning if the result argument is undefined.";
+                if (!error) {
+                    test.ok(false, errorMessage);
+                }
 
-            test.done();
-        },
-        custom_options: function (test) {
-            test.expect(1);
-
-            var actual = grunt.file.read('tmp/custom_options'),
-                expected = grunt.file.read('test/expected/custom_options');
-            test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
-
-            test.done();
+                test.equal(error.code, 6, errorMessage);
+                test.done();
+            });
         }
     };
 }());

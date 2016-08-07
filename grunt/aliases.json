@@ -6,7 +6,6 @@
 
     "test": [
         "clean",
-        "html_compare",
         "nodeunit"
     ]
 }
