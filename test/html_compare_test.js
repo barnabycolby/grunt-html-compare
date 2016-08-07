@@ -5,6 +5,29 @@
     var exec = require('child_process').exec;
 
     /*
+     * Tests that a given html_compare grunt target fails with a warning.
+     *
+     * @test The nodeunit test object to use
+     * @target The html_compare target to run
+     * @errorMessage The error message to print if the task does not fail with a warning.
+     */
+    function expectGruntWarning(test, target, errorMessage) {
+        test.expect(1);
+
+        // Run the grunt target and check that it fails with a warning
+        exec('grunt html_compare:' + target, function (error) {
+            if (error === undefined || error === null) {
+                test.ok(false, errorMessage);
+            } else {
+                // Grunt terminates with exit code 6 for warnings
+                test.equal(error.code, 6, errorMessage);
+            }
+
+            test.done();
+        });
+    }
+
+    /*
         ======== A Handy Little Nodeunit Reference ========
         https://github.com/caolan/nodeunit
 
@@ -26,18 +49,12 @@
 
     exports.html_compare = {
         missing_result: function (test) {
-            test.expect(1);
-
-            // Run the missing_result target and check that it fails with a warning
-            exec('grunt html_compare:missing_result', function (error) {
-                var errorMessage = "The task should fail with a warning if the result argument is undefined.";
-                if (!error) {
-                    test.ok(false, errorMessage);
-                }
-
-                test.equal(error.code, 6, errorMessage);
-                test.done();
-            });
+            var errorMessage = "The task should fail with a warning if the result argument is undefined.";
+            expectGruntWarning(test, "missing_result", errorMessage);
+        },
+        no_source_files: function (test) {
+            var errorMessage = "The task should fail with a warning if no source files are specified.";
+            expectGruntWarning(test, "no_source_files", errorMessage);
         }
     };
 }());

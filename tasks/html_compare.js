@@ -16,8 +16,12 @@
         // creation: http://gruntjs.com/creating-tasks
 
         grunt.registerMultiTask('html_compare', 'Compares two HTML files, passing the result to a user defined function.', function () {
+            // Perform sanity checks
             if (this.data.result === undefined) {
-                grunt.fail.warn("Missing the result parameter");
+                grunt.fail.warn("Missing the result parameter.");
+            }
+            if (this.files.length === 0) {
+                grunt.fail.warn("You haven't specified any files to compare.");
             }
 
             /* Merge task-specific and/or target-specific options with these defaults.
