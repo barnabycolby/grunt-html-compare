@@ -28,7 +28,6 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-nodeunit": "^0.3.3",
     "grunt-jslint": "latest",
     "load-grunt-config": "latest",
