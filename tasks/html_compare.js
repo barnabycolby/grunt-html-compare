@@ -20,8 +20,8 @@
             if (this.data.result === undefined) {
                 grunt.fail.warn("Missing the result parameter.");
             }
-            if (this.files.length === 0) {
-                grunt.fail.warn("You haven't specified any files to compare.");
+            if (this.files.length !== 1) {
+                grunt.fail.warn("You need to specify exactly one set of source files to compare.");
             }
 
             /* Merge task-specific and/or target-specific options with these defaults.
