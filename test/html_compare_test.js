@@ -67,6 +67,10 @@
         more_than_2_source_files: function (test) {
             var errorMessage = "The task should fail with a warning if more than two source files are specified.";
             expectGruntWarning(test, "more_than_2_source_files", errorMessage);
+        },
+        result_is_not_a_function: function (test) {
+            var errorMessage = "The task should fail with a warning if the result argument is not a function.";
+            expectGruntWarning(test, "result_is_not_a_function", errorMessage);
         }
     };
 }());

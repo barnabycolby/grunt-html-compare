@@ -23,6 +23,9 @@
             if (this.files.length !== 1 || this.files[0].src.length !== 2) {
                 grunt.fail.warn("You need to specify exactly one set of two source files to compare. (i.e. src: ['a.html', 'b.html'])");
             }
+            if (typeof this.data.result !== 'function') {
+                grunt.fail.warn("The result parameter should be a function.");
+            }
 
             /* Merge task-specific and/or target-specific options with these defaults.
             var options = this.options({
