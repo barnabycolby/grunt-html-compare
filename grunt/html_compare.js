@@ -20,6 +20,14 @@
                 { src: ['test/a/identical.html', 'test/b/identical.html'] }
             ],
             result: doNothingFunction
+        },
+        less_than_2_source_files: {
+            src: ['test/a/identical.html'],
+            result: doNothingFunction
+        },
+        more_than_2_source_files: {
+            src: ['test/a/identical.html', 'test/b/identical.html', 'test/c/identical.html'],
+            result: doNothingFunction
         }
     };
 }());
