@@ -69,6 +69,10 @@
             var errorMessage = "The task should fail with a warning if the result argument is not a function.";
             expectGruntWarning(test, "result_is_not_a_function", errorMessage);
         },
+        ignore_selectors_incorrect_type: function (test) {
+            var errorMessage = "The task should fail with a warning if the ignoreSelectors option is not a string or an array of strings.";
+            expectGruntWarning(test, "ignore_selectors_incorrect_type", errorMessage);
+        },
         identical_files: function (test) {
             test.expect(1);
             test.ok(grunt.file.exists('tmp/identical_files'), 'Comparison of two identical files should return true');

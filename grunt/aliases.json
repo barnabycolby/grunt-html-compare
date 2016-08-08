@@ -6,7 +6,9 @@
 
     "html_compare_passing": [
         "html_compare:identical_files",
-        "html_compare:different_files"
+        "html_compare:different_files",
+        "html_compare:ignore_selectors_string",
+        "html_compare:ignore_selectors_string_array"
     ],
 
     "test": [

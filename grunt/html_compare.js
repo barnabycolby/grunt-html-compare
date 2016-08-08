@@ -46,6 +46,27 @@
             different_files: {
                 src: ['test/a/different.html', 'test/b/different.html'],
                 result: writeFileIfTrue('tmp/different_files')
+            },
+            ignore_selectors_incorrect_type: {
+                options: {
+                    ignoreSelectors: ['sausages', 3]
+                },
+                src: ['test/a/identical.html', 'test/b/identical.html'],
+                result: doNothingFunction
+            },
+            ignore_selectors_string: {
+                options: {
+                    ignoreSelectors: '#id'
+                },
+                src: ['test/a/identical.html', 'test/b/identical.html'],
+                result: doNothingFunction
+            },
+            ignore_selectors_string_array: {
+                options: {
+                    ignoreSelectors: ['#id', '.container']
+                },
+                src: ['test/a/identical.html', 'test/b/identical.html'],
+                result: doNothingFunction
             }
         };
     };
