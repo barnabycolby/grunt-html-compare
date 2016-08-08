@@ -14,13 +14,6 @@
         no_source_files: {
             result: doNothingFunction
         },
-        multiple_source_file_sets: {
-            files: [
-                { src: ['test/a/identical.html', 'test/b/identical.html'] },
-                { src: ['test/a/identical.html', 'test/b/identical.html'] }
-            ],
-            result: doNothingFunction
-        },
         less_than_2_source_files: {
             src: ['test/a/identical.html'],
             result: doNothingFunction

@@ -56,10 +56,6 @@
             var errorMessage = "The task should fail with a warning if no source files are specified.";
             expectGruntWarning(test, "no_source_files", errorMessage);
         },
-        multiple_source_file_sets: function (test) {
-            var errorMessage = "The task should fail with a warning if more than one set of source files are specified.";
-            expectGruntWarning(test, "multiple_source_file_sets", errorMessage);
-        },
         less_than_2_source_files: function (test) {
             var errorMessage = "The task should fail with a warning if less than two source files are specified.";
             expectGruntWarning(test, "less_than_2_source_files", errorMessage);
