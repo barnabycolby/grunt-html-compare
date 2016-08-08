@@ -42,6 +42,10 @@
             identical_files: {
                 src: ['test/a/identical.html', 'test/b/identical.html'],
                 result: writeFileIfTrue('tmp/identical_files')
+            },
+            different_files: {
+                src: ['test/a/different.html', 'test/b/different.html'],
+                result: writeFileIfTrue('tmp/different_files')
             }
         };
     };

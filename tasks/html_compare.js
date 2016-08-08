@@ -27,8 +27,9 @@
                 grunt.fail.warn("The result parameter should be a function.");
             }
 
-            // At the moment, we always pass true as the result
-            this.data.result(true);
+            // As we don't care about the format of the files, we can simply compare them directly
+            var result = grunt.file.read(this.filesSrc[0]) === grunt.file.read(this.filesSrc[1]);
+            this.data.result(result);
         });
     };
 }());

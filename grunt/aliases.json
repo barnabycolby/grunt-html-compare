@@ -5,7 +5,8 @@
     ],
 
     "html_compare_passing": [
-        "html_compare:identical_files"
+        "html_compare:identical_files",
+        "html_compare:different_files"
     ],
 
     "test": [

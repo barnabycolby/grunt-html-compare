@@ -73,6 +73,11 @@
             test.expect(1);
             test.ok(grunt.file.exists('tmp/identical_files'), 'Comparison of two identical files should return true');
             test.done();
+        },
+        different_files: function (test) {
+            test.expect(1);
+            test.ok(!grunt.file.exists('tmp/different_files'), 'Comparison of two different files should return false');
+            test.done();
         }
     };
 }());
