@@ -2,7 +2,8 @@
 (function () {
     'use strict';
 
-    var exec = require('child_process').exec;
+    var exec = require('child_process').exec,
+        grunt = require('grunt');
 
     /*
      * Tests that a given html_compare grunt target fails with a warning.
@@ -67,6 +68,11 @@
         result_is_not_a_function: function (test) {
             var errorMessage = "The task should fail with a warning if the result argument is not a function.";
             expectGruntWarning(test, "result_is_not_a_function", errorMessage);
+        },
+        identical_files: function (test) {
+            test.expect(1);
+            test.ok(grunt.file.exists('tmp/identical_files'), 'Comparison of two identical files should return true');
+            test.done();
         }
     };
 }());

@@ -4,7 +4,13 @@
         "test"
     ],
 
+    "html_compare_passing": [
+        "html_compare:identical_files"
+    ],
+
     "test": [
+        "clean:tests",
+        "html_compare_passing",
         "nodeunit"
     ]
 }

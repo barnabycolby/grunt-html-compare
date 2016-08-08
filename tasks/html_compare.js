@@ -27,12 +27,8 @@
                 grunt.fail.warn("The result parameter should be a function.");
             }
 
-            /* Merge task-specific and/or target-specific options with these defaults.
-            var options = this.options({
-                punctuation: '.',
-                separator: ', '
-            });
-            */
+            // At the moment, we always pass true as the result
+            this.data.result(true);
         });
     };
 }());
