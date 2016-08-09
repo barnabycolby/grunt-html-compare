@@ -8,7 +8,10 @@
         "html_compare:identical_files",
         "html_compare:different_files",
         "html_compare:ignore_selectors_string",
-        "html_compare:ignore_selectors_string_array"
+        "html_compare:ignore_selectors_string_array",
+        "html_compare:ignore_selectors_identical_files",
+        "html_compare:ignore_selectors_different_only_in_selected",
+        "html_compare:ignore_selectors_different_in_non_selected"
     ],
 
     "test": [

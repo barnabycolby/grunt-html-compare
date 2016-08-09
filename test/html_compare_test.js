@@ -73,6 +73,10 @@
             var errorMessage = "The task should fail with a warning if the ignoreSelectors option is not a string or an array of strings.";
             expectGruntWarning(test, "ignore_selectors_incorrect_type", errorMessage);
         },
+        ignore_selectors_invalid_selector: function (test) {
+            var errorMessage = "The task should fail with a warning if the ignoreSelectors option contains an invalid selector.";
+            expectGruntWarning(test, "ignore_selectors_invalid_selector", errorMessage);
+        },
         identical_files: function (test) {
             test.expect(1);
             test.ok(grunt.file.exists('tmp/identical_files'), 'Comparison of two identical files should return true');
@@ -81,6 +85,21 @@
         different_files: function (test) {
             test.expect(1);
             test.ok(!grunt.file.exists('tmp/different_files'), 'Comparison of two different files should return false');
+            test.done();
+        },
+        ignore_selectors_identical_files: function (test) {
+            test.expect(1);
+            test.ok(grunt.file.exists('tmp/ignore_selectors_identical_files'), 'Comparison of two identical files should return true regardless of the ignored selectors.');
+            test.done();
+        },
+        ignore_selectors_different_only_in_selected: function (test) {
+            test.expect(1);
+            test.ok(grunt.file.exists('tmp/ignore_selectors_different_only_in_selected'), 'Comparison of two files that differ only in ignored elements should return true.');
+            test.done();
+        },
+        ignore_selectors_different_in_non_selected: function (test) {
+            test.expect(1);
+            test.ok(!grunt.file.exists('tmp/ignore_selectors_different_in_non_selected'), 'Comparison of two files that differ outside of ignored elements should return false.');
             test.done();
         }
     };

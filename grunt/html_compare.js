@@ -67,6 +67,34 @@
                 },
                 src: ['test/a/identical.html', 'test/b/identical.html'],
                 result: doNothingFunction
+            },
+            ignore_selectors_invalid_selector: {
+                options: {
+                    ignoreselectors: ['#id', ':*d fdas$']
+                },
+                src: ['test/a/identical.html', 'test/b/identical.html'],
+                result: doNothingFunction
+            },
+            ignore_selectors_identical_files: {
+                options: {
+                    ignoreselectors: '.jumbotron > .lead'
+                },
+                src: ['test/a/identical.html', 'test/b/identical.html'],
+                result: writeFileIfTrue('tmp/ignore_selectors_identical_files')
+            },
+            ignore_selectors_different_only_in_selected: {
+                options: {
+                    ignoreselectors: '#lastUpdated'
+                },
+                src: ['test/a/differentOnlyInSelected.html', 'test/b/differentOnlyInSelected.html'],
+                result: writeFileIfTrue('tmp/ignore_selectors_different_only_in_selected')
+            },
+            ignore_selectors_different_in_non_selected: {
+                options: {
+                    ignoreselectors: '.container h1'
+                },
+                src: ['test/a/different.html', 'test/b/different.html'],
+                result: writeFileIfTrue('tmp/ignore_selectors_different_in_non_selected')
             }
         };
     };
