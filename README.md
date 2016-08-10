@@ -22,6 +22,11 @@ grunt.loadNpmTasks('grunt-html-compare');
 ### Overview
 In your project's Gruntfile, add a section named `html_compare` to the data object passed into `grunt.initConfig()`.
 
+#### result
+Type: `function`
+
+You must provide a `result` parameter, which should be a function that takes a single boolean argument. The function will be invoked once the comparison result is known, with the first argument indicating the result (true if the files are the same, false otherwise).
+
 ```js
 grunt.initConfig({
   html_compare: {
@@ -30,6 +35,9 @@ grunt.initConfig({
     },
     your_target: {
       // Target-specific file lists and/or options go here.
+      result: function (result) {
+        ...
+      }
     },
   },
 });
@@ -37,53 +45,58 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+#### options.ignoreSelectors
+Type: `String` or `String Array`
+Default value: `undefined`
 
-A string value that is used to do something with whatever.
-
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
+One or more CSS selectors that describe nodes to be ignored during the comparison.
 
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+In this example, the default options are used to delete one of the two HTML files if they are the same.
 
 ```js
 grunt.initConfig({
   html_compare: {
     options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+    src: ['a.html', 'b.html'],
+    result: function (result) {
+      if (result) {
+        grunt.file.delete('b.html');
+      }
+    }
   },
 });
 ```
 
 #### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+In this example, the ignoreSelectors option is used to compare differences in two HTML files, whilst ignoring the last updated date. If there are no differences then the current file is kept, preserving the date.
 
 ```js
 grunt.initConfig({
   html_compare: {
     options: {
-      separator: ': ',
-      punctuation: ' !!!',
+      ignoreSelectors: '#lastUpdated'
     },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+    src: ['index.html', 'index.new.html'],
+    result: function (result) {
+      if (result) {
+        grunt.file.delete('index.new.html');
+      } else {
+        grunt.file.delete('index.html');
+
+        // Rename using copy and delete
+        grunt.file.copy('index.new.html', 'index.html');
+        grunt.file.delete('index.new.html');
+      }
+    }
   },
 });
 ```
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/). If creating a new feature, consider opening an issue first, otherwise just submit a pull request.
 
 ## Release History
 _(Nothing yet)_
