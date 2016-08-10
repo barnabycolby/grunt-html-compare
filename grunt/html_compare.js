@@ -47,6 +47,13 @@
                 src: ['test/a/different.html', 'test/b/different.html'],
                 result: writeFileIfTrue('tmp/different_files')
             },
+            invalid_html: {
+                options: {
+                    ignoreSelectors: ['sausages']
+                },
+                src: ['test/a/invalid.html', 'test/b/invalid.html'],
+                result: doNothingFunction
+            },
             ignore_selectors_incorrect_type: {
                 options: {
                     ignoreSelectors: ['sausages', 3]

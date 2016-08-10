@@ -112,8 +112,13 @@
                             minifyJS: true,
                             removeEmptyAttributes: true
                         };
-                        minifiedAString = minify(aWindow.document.documentElement.outerHTML, minificationOptions);
-                        minifiedBString = minify(bWindow.document.documentElement.outerHTML, minificationOptions);
+                        try {
+                            minifiedAString = minify(aWindow.document.documentElement.outerHTML, minificationOptions);
+                            minifiedBString = minify(bWindow.document.documentElement.outerHTML, minificationOptions);
+                        } catch (ex) {
+                            // Converts the error to a warning
+                            grunt.fail.warn(ex);
+                        }
 
                         // Computing the result is as simple as a string comparison
                         resultCallback(minifiedAString === minifiedBString);
