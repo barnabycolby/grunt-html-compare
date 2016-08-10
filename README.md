@@ -2,6 +2,8 @@
 
 > Compares two HTML files, passing the result to a user defined function.
 
+[![Build Status](https://travis-ci.org/barnabycolby/grunt-html-compare.svg?branch=master)](https://travis-ci.org/barnabycolby/grunt-html-compare)
+
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
 
