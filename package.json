@@ -28,11 +28,13 @@
     "test": "grunt test"
   },
   "devDependencies": {
+    "grunt": "~0.4.5",
     "grunt-contrib-clean": "latest",
-    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt-contrib-nodeunit": "latest",
     "grunt-jslint": "latest",
-    "load-grunt-config": "latest",
-    "grunt": "~0.4.5"
+    "html-minifier": "latest",
+    "jsdom": "latest",
+    "load-grunt-config": "latest"
   },
   "keywords": [
     "gruntplugin"
