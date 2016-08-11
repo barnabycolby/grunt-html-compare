@@ -109,6 +109,11 @@
             test.expect(1);
             test.ok(!grunt.file.exists('tmp/ignore_selectors_different_in_non_selected'), 'Comparison of two files that differ outside of ignored elements should return false.');
             test.done();
+        },
+        ignore_missing_src: function (test) {
+            test.expect(1);
+            test.ok(grunt.file.exists('tmp/ignore_missing_src'), 'If the ignoreMissingSrc option is set and the source files are missing, the result function should be called with undefined.');
+            test.done();
         }
     };
 }());

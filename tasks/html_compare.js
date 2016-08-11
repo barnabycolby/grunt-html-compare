@@ -71,6 +71,9 @@
                 // If the ignoreMissingSrc options is set, we need to silently continue if we are missing src files
                 if (options.ignoreMissingSrc) {
                     grunt.log.writeln("Ignoring missing source files.");
+                    grunt.verbose.write("Calling result with undefined...");
+                    resultCallback(undefined);
+                    grunt.verbose.ok();
                     return;
                 }
 

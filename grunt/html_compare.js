@@ -114,7 +114,11 @@
                 options: {
                     ignoreMissingSrc: true
                 },
-                result: doNothingFunction
+                result: function (result) {
+                    if (result === undefined) {
+                        grunt.file.write('tmp/ignore_missing_src');
+                    }
+                }
             }
         };
     };
