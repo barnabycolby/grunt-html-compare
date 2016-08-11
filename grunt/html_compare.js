@@ -109,6 +109,12 @@
                 },
                 src: ['test/a/identical.html', 'test/b/identical.html'],
                 result: doNothingFunction
+            },
+            ignore_missing_src: {
+                options: {
+                    ignoreMissingSrc: true
+                },
+                result: doNothingFunction
             }
         };
     };

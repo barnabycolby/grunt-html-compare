@@ -44,13 +44,10 @@
                 ignoreMissingSrc: false
             });
 
-            // Perform sanity checks
+            // Perform sanity checks of the result argument
             resultCallback = this.data.result;
             if (resultCallback === undefined) {
                 grunt.fail.warn("Missing the result parameter.");
-            }
-            if (this.filesSrc.length !== 2) {
-                grunt.fail.warn("You need to specify exactly two source files to compare. (i.e. src: ['a.html', 'b.html'])");
             }
             if (typeof resultCallback !== 'function') {
                 grunt.fail.warn("The result parameter should be a function.");
@@ -66,9 +63,17 @@
                 }
             }
 
-            // Perform sanity checks of the ignoreMissingSrc option
+            // Perform sanity checks of the ignoreMissingSrc option and src files
             if (typeof options.ignoreMissingSrc !== 'boolean') {
                 grunt.fail.warn("The ignoreMissingSrc option must be a boolean value.");
+            }
+            if (this.filesSrc.length !== 2) {
+                // If the ignoreMissingSrc options is set, we need to silently continue if we are missing src files
+                if (options.ignoreMissingSrc) {
+                    return;
+                }
+
+                grunt.fail.warn("You need to specify exactly two source files to compare. (i.e. src: ['a.html', 'b.html'])");
             }
 
             fileAPath = this.filesSrc[0];
