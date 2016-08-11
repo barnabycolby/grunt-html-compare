@@ -47,6 +47,12 @@ grunt.initConfig({
 
 ### Options
 
+#### options.ignoreMissingSrc
+Type: `Boolean`
+Default value: `false`
+
+Set this to true if you want to prevent the task from failing when the number of given source files is not exactly two. Instead, the task will silently complete without performing the comparison. Note that the `result` function will not be called.
+
 #### options.ignoreSelectors
 Type: `String` or `String Array`
 Default value: `undefined`
@@ -97,8 +103,21 @@ grunt.initConfig({
 });
 ```
 
+In this example, the ignoreMissingSrc files option is used to prevent failure when the index.html file is not available, due to performing a clean build.
+
+```js
+grunt.initConfig({
+  html_compare: {
+    options: {
+      ignoreMissingSrc: true
+    },
+    src: ['index.html', 'index.new.html'],
+    result: function (result) {
+      ...
+    }
+  },
+});
+```
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/). If creating a new feature, consider opening an issue first, otherwise just submit a pull request.
-
-## Release History
-_(Nothing yet)_
