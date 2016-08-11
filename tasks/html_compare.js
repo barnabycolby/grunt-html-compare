@@ -88,19 +88,24 @@
                 done = this.async();
 
                 // We parse the files into DOM structures, allowing us to handle the CSS selectors properly
+                grunt.verbose.write("Parsing first file...");
                 jsdom.env(fileA, function (err, aWindow) {
                     if (err !== null) {
                         grunt.fail.warn(fileAPath + " could not be parsed.");
                     }
+                    grunt.verbose.ok();
 
+                    grunt.verbose.write("Parsing second file...");
                     jsdom.env(fileB, function (err, bWindow) {
-                        var i, j, elementsToRemoveA, elementsToRemoveB, minificationOptions, minifiedAString, minifiedBString;
+                        var i, j, elementsToRemoveA, elementsToRemoveB, minificationOptions, minifiedAString, minifiedBString, result;
 
                         if (err !== null) {
                             grunt.fail.warn(fileBPath + " could not be parsed.");
                         }
+                        grunt.verbose.ok();
 
                         // We remove the ignored elements from the dom tree
+                        grunt.verbose.write("Removing ignored elements from the DOMs...");
                         for (i = 0; i < ignoreSelectors.length; i += 1) {
                             // First we try to get a list of the elements that need to be removed
                             try {
@@ -118,9 +123,11 @@
                                 elementsToRemoveB[j].remove();
                             }
                         }
+                        grunt.verbose.ok();
 
                         // Before a string match comparison is done, we pass the resulting html through a minifer
                         // This removes unnecessary cruft which can cause comparison errors, without changing the semantics
+                        grunt.verbose.write("Minifying files...");
                         minificationOptions = {
                             collapseBooleanAttributes: true,
                             collapseWhitespace: true,
@@ -135,9 +142,16 @@
                             // Converts the error to a warning
                             grunt.fail.warn(ex);
                         }
+                        grunt.verbose.ok();
 
                         // Computing the result is as simple as a string comparison
-                        resultCallback(minifiedAString === minifiedBString);
+                        result = minifiedAString === minifiedBString;
+                        grunt.verbose.write("Calling result function...");
+                        resultCallback(result);
+                        grunt.verbose.ok();
+
+                        // Print a success message
+                        grunt.log.ok("Successfully compared " + fileAPath + " with " + fileBPath + ", concluding that they were " + (result ? "identical" : "different") + ".");
 
                         // Finally we tell grunt that this async task has completed
                         done(true);
