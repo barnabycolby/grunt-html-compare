@@ -1,7 +1,7 @@
 {
   "name": "grunt-html-compare",
   "description": "Compares two HTML files, passing the result to a user defined function.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "homepage": "https://github.com/barnabycolby/grunt-html-compare",
   "author": {
     "name": "Barnaby Colby",
