@@ -27,7 +27,7 @@ In your project's Gruntfile, add a section named `html_compare` to the data obje
 #### result
 Type: `function`
 
-You must provide a `result` parameter, which should be a function that takes a single boolean argument. The function will be invoked once the comparison result is known, with the first argument indicating the result (true if the files are the same, false otherwise).
+You must provide a `result` parameter, which should be a function that takes a single boolean argument. The function will be invoked once the comparison result is known, with the first argument indicating the result (true if the files are the same, false otherwise). If the `ignoreMissingSrc` option is set, the callback may also be called with `undefined`, indicating that one or more of the src files were missing.
 
 ```js
 grunt.initConfig({
@@ -51,7 +51,7 @@ grunt.initConfig({
 Type: `Boolean`
 Default value: `false`
 
-Set this to true if you want to prevent the task from failing when the number of given source files is not exactly two. Instead, the task will silently complete without performing the comparison. Note that the `result` function will not be called.
+Set this to true if you want to prevent the task from failing when the number of given source files is not exactly two. Instead, the task will silently complete without performing the comparison. Note that the `result` function will be called with `undefined` if one or more of the source files are missing.
 
 #### options.ignoreSelectors
 Type: `String` or `String Array`
