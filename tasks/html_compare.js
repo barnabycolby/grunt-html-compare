@@ -37,7 +37,12 @@
         };
 
         grunt.registerMultiTask('html_compare', 'Compares two HTML files, passing the result to a user defined function.', function () {
-            var ignoreSelectors, done, fileA, fileB, fileAPath, fileBPath, resultCallback;
+            var ignoreSelectors, done, fileA, fileB, fileAPath, fileBPath, resultCallback, options;
+
+            // Merge task-specific and/or target-specific options with these defaults
+            options = this.options({
+                ignoreMissingSrc: false
+            });
 
             // Perform sanity checks
             resultCallback = this.data.result;
@@ -52,13 +57,18 @@
             }
 
             // Perform sanity checks of the ignoreSelectors option
-            ignoreSelectors = this.options().ignoreSelectors;
+            ignoreSelectors = options.ignoreSelectors;
             if (ignoreSelectors !== undefined) {
                 if (typeof ignoreSelectors === 'string') {
                     ignoreSelectors = [ ignoreSelectors ];
                 } else if (!isArrayOfStrings(ignoreSelectors)) {
                     grunt.fail.warn("The ignoreSelectors option must be a string or an array of strings.");
                 }
+            }
+
+            // Perform sanity checks of the ignoreMissingSrc option
+            if (typeof options.ignoreMissingSrc !== 'boolean') {
+                grunt.fail.warn("The ignoreMissingSrc option must be a boolean value.");
             }
 
             fileAPath = this.filesSrc[0];

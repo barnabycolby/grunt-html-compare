@@ -81,6 +81,10 @@
             var errorMessage = "The task should fail with a warning if the ignoreSelectors option contains an invalid selector.";
             expectGruntWarning(test, "ignore_selectors_invalid_selector", errorMessage);
         },
+        ignore_missing_src_non_boolean: function (test) {
+            var errorMessage = "The task should fail with a warning if the ignoreMissingSrc option is not a boolean value.";
+            expectGruntWarning(test, "ignore_missing_src_non_boolean", errorMessage);
+        },
         identical_files: function (test) {
             test.expect(1);
             test.ok(grunt.file.exists('tmp/identical_files'), 'Comparison of two identical files should return true');

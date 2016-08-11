@@ -102,6 +102,13 @@
                 },
                 src: ['test/a/different.html', 'test/b/different.html'],
                 result: writeFileIfTrue('tmp/ignore_selectors_different_in_non_selected')
+            },
+            ignore_missing_src_non_boolean: {
+                options: {
+                    ignoreMissingSrc: 'Bananas'
+                },
+                src: ['test/a/identical.html', 'test/b/identical.html'],
+                result: doNothingFunction
             }
         };
     };
